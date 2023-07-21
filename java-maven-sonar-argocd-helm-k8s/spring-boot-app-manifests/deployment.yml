@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: spring-boot-app
-        image: mjallow2021/ultimate-demo:7
+        image: mjallow2021/ultimate-demo:replaceImageTag
         ports:
         - containerPort: 8080
