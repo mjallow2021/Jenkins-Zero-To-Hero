@@ -64,5 +64,17 @@ pipeline {
             }
         }
     }
-  }
+/*
+    stage('Deploy Artifact') {
+      environment {
+        NEXUS_URL = "http://192.168.0.122:8081/repository/DockerImages/"
+      }
+      steps {
+        withCredentials([string(credentialsId: 'nexus', variable: 'NEXUS_AUTH_TOKEN')]) {
+          sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.login=$NEXUS_AUTH_TOKEN -Dsonar.host.url=${NEXUS_URL}'
+        }
+      }
+    }
+*/  
+}
 }
