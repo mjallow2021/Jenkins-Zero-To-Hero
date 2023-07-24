@@ -67,11 +67,13 @@ pipeline {
 /*
     stage('Deploy Artifact') {
       environment {
-        NEXUS_URL = "http://192.168.0.122:8081/repository/DockerImages/"
+        NEXUS_URL = "http://192.168.0.122:8081"
       }
       steps {
         withCredentials([string(credentialsId: 'nexus', variable: 'NEXUS_AUTH_TOKEN')]) {
-          sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.login=$NEXUS_AUTH_TOKEN -Dsonar.host.url=${NEXUS_URL}'
+          sh '''docker login -u admin -p admin123 ${NEXUS_URL}
+              docker push ${NEXUS_URL}/repository/DockerImages/ 
+            '''
         }
       }
     }
